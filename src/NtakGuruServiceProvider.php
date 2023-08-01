@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class NtakGuruServiceProvider extends ServiceProvider
 {
-
     public function boot(): void
     {
         $this->loadRoutesFrom(dirname(__DIR__).'/routes/api.php');

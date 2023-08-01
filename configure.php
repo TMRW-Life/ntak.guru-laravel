@@ -5,7 +5,7 @@ function ask(string $question, string $default = ''): string
 {
     $answer = readline($question.($default ? " ({$default})" : null).': ');
 
-    if (! $answer) {
+    if (!$answer) {
         return $default;
     }
 
@@ -16,7 +16,7 @@ function confirm(string $question, bool $default = false): bool
 {
     $answer = ask($question.' ('.($default ? 'Y/n' : 'y/N').')');
 
-    if (! $answer) {
+    if (!$answer) {
         return $default;
     }
 
@@ -192,7 +192,7 @@ writeln('------');
 
 writeln('This script will replace the above values in all relevant files in the project directory.');
 
-if (! confirm('Modify files?', true)) {
+if (!confirm('Modify files?', true)) {
     exit(1);
 }
 
@@ -228,12 +228,12 @@ foreach ($files as $file) {
     };
 }
 
-if (! $useLaravelPint) {
+if (!$useLaravelPint) {
     safeUnlink(__DIR__.'/.github/workflows/fix-php-code-style-issues.yml');
     safeUnlink(__DIR__.'/pint.json');
 }
 
-if (! $usePhpStan) {
+if (!$usePhpStan) {
     safeUnlink(__DIR__.'/phpstan.neon.dist');
     safeUnlink(__DIR__.'/phpstan-baseline.neon');
     safeUnlink(__DIR__.'/.github/workflows/phpstan.yml');
@@ -248,16 +248,16 @@ if (! $usePhpStan) {
     remove_composer_script('phpstan');
 }
 
-if (! $useDependabot) {
+if (!$useDependabot) {
     safeUnlink(__DIR__.'/.github/dependabot.yml');
     safeUnlink(__DIR__.'/.github/workflows/dependabot-auto-merge.yml');
 }
 
-if (! $useLaravelRay) {
+if (!$useLaravelRay) {
     remove_composer_deps(['spatie/laravel-ray']);
 }
 
-if (! $useUpdateChangelogWorkflow) {
+if (!$useUpdateChangelogWorkflow) {
     safeUnlink(__DIR__.'/.github/workflows/update-changelog.yml');
 }
 
